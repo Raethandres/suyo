@@ -46,6 +46,10 @@
   margin-right: 20px;
 }
 
+form>.center>input{
+  width: 3%;
+}
+
 td{
   background: #E15B64;
   border-radius: 0.8em;
