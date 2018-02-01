@@ -64,7 +64,10 @@ td{
   width: 1.6em; 
 }
 .click{
-  background: #Cd4750;
+  border-radius: 200px 200px 200px 200px;
+-moz-border-radius: 200px 200px 200px 200px;
+-webkit-border-radius: 200px 200px 200px 200px;
+border: 3px solid #4947462d
 }
 .center>input{
     display: block;

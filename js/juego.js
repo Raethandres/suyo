@@ -48,16 +48,7 @@ $("#enviar").on('click',function(){
 		$("#ins").before("<div class='center'> <p>"+i+"</p>"+pun+" </div>")
 		$("#ins").before("<input type='hidden' name='crsf' value='matriz'/>")
 	}
-		// $.ajax({
-  //           type: 'post',
-  //           url: 'php/index.php',
-  //           data:$('#form').serialize(),
-  //           dataType:'JSON',
-  //           success: function (result) {
-  //             console.log(result);
-              
-  //           }
-  //         });
+		
 	}else{
 		if (!mt) {$('#form').append('<div class="center"> <p >NO INVENTE </p> </div>')}
 		else{
@@ -133,7 +124,8 @@ function createT(arg) {
 	     da+="</div>"
     }
 
-    // console.log(da)
+	// console.log(da)
+	Verificar(arg)
     $('#juego').html(da)
 
     $("td").on('click',function(){
@@ -147,6 +139,7 @@ function createT(arg) {
 				// console.log($(this).html(),$(this).attr("id"))
 				con+=1
 				sw.push($(this))
+				$(this).addClass("click")
 			}
 		}
 	
@@ -179,6 +172,11 @@ function Asignar(arg) {
 		}
 	}
 }
+
+function Verificar(params) {
+	
+}
+
 function swap() {
 	if (con===2) {
 		// console.log(sw)
@@ -189,6 +187,7 @@ function swap() {
 		sw[0].css("background",color[parseInt(sw[0].html())])
 		sw[1].css("background",color[parseInt(sw[1].html())])
 		con=0
+		sw[0].removeClass("click")
 		sw=Array()
 		// console.log(JSON.stringify(dat))
 		$.ajax({
