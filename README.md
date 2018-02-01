@@ -31,7 +31,7 @@ php -S localhost:8000 o el despliegue del servidor
 ## Autores ✒️
 
 
-* **Andrés Colemenares** - *Trabajo Inicial* - [villanuevand](https://github.com/Raethandres)
+* **Andrés Colemenares** - *Trabajo Inicial* - [raeth](https://github.com/Raethandres)
 
 
 ## Expresiones de Gratitud 🎁
