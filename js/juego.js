@@ -3,7 +3,17 @@ $(document).ready(function(){
 let con=0;
 let sw=Array();
 let mt=false;
-
+var onTd=true;
+	$.ajax({
+            type: 'delete',
+            url: 'php/index.php',
+            data:"delete",
+            dataType:'JSON',
+            success: function (result) {
+              console.log(result);
+              
+            }
+          });
 $("#send").on('click',function(){
 	console.log("22222ww")
 	$.ajax({
@@ -52,18 +62,18 @@ $("#enviar").on('click',function(){
 		if (!mt) {$('#form').append('<div class="center"> <p >NO INVENTE </p> </div>')}
 		else{
 			var matriz=$('#form').serializeArray()
-			// $.ajax({
-   //          type: 'post',
-   //          url: 'php/index.php',
-   //          data:$('#form').serializeArray(),
-   //          dataType:'JSON',
-   //          success: function (result) {
-   //            console.log(result);
+			$.ajax({
+            type: 'post',
+            url: 'php/index.php',
+            data:$('#form').serializeArray(),
+            dataType:'JSON',
+            success: function (result) {
+              console.log(result);
               
-   //          }
-   //        });
+            }
+          });
 			
-			$("#c").html("<div><div class='header center'><h1 >A jugar</h1></div><div class='center' id='juego'></div>")
+			$("#c").html("<div><div class='header center'><h1 id='cabeza'>A jugar</h1></div><div class='center' id='juego'></div>")
 			createT(matriz)
 		}
 		
@@ -127,17 +137,19 @@ function createT(arg) {
     $('#juego').html(da)
 
     $("td").on('click',function(){
-	console.log(sw)
-	if (sw.length>0 && $(this).attr("id")!=sw[0].attr("id")) {
-		console.log($(this).html(),$(this).attr("id"))
-		con+=1
-		sw.push($(this))
-		swap()
-	}else if (con<1){
-		console.log($(this).html(),$(this).attr("id"))
-		con+=1
-		sw.push($(this))
-	}
+		if (onTd) {
+			if (sw.length>0 && $(this).attr("id")!=sw[0].attr("id")) {
+				console.log($(this).html(),$(this).attr("id"))
+				con+=1
+				sw.push($(this))
+				swap()
+			}else if (con<1){
+				console.log($(this).html(),$(this).attr("id"))
+				con+=1
+				sw.push($(this))
+			}
+		}
+	
 	
 })
 }
@@ -180,12 +192,23 @@ function swap() {
 		sw=Array()
 		console.log(JSON.stringify(dat))
 		$.ajax({
-            type: 'post',
+            type: 'put',
             url: 'php/index.php',
             data:dat,
             dataType:'JSON',
             success: function (result) {
-              console.log(result);
+              if (result) {
+              	console.log(result)
+              	if (result.Gano==="si") {
+              		$('#cabeza').html("GANO")
+              		onTd=false;
+              		$('#juego').after("<div class='center' ><p class='boton' id='reload'>EMPEZAR</p></div>")
+              		$("#reload").on('click',function(){
+							location.reload()
+						
+					})
+              	}
+              }
               
             }
           });
