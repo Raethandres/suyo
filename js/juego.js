@@ -10,19 +10,19 @@ var onTd=true;
             data:"delete",
             dataType:'JSON',
             success: function (result) {
-              console.log(result);
+              // console.log(result);
               
             }
           });
 $("#send").on('click',function(){
-	console.log("22222ww")
+	// console.log("22222ww")
 	$.ajax({
             type: 'post',
             url: 'php/index.php',
             data:"www",
             dataType:'JSON',
             success: function (result) {
-              console.log(result);
+              // console.log(result);
               
             }
           });
@@ -40,7 +40,7 @@ $("#enviar").on('click',function(){
 		$("#ins").before("<div class='center'>"+r+"</div>")
 
 		for (var i = 0; i < parseInt($('#contenedor').val()); i++) {
-		console.log(34)
+		// console.log(34)
 		let pun=""
 		for (var j = 0; j < parseInt($('#punto').val()); j++) {
 					pun+="<input type='number' name='"+i+"/"+j+"'>"
@@ -68,7 +68,7 @@ $("#enviar").on('click',function(){
             data:$('#form').serializeArray(),
             dataType:'JSON',
             success: function (result) {
-              console.log(result);
+              // console.log(result);
               
             }
           });
@@ -85,7 +85,7 @@ $("#enviar").on('click',function(){
 
 
 function createT(arg) {
-	console.log(arg)
+	// console.log(arg)
 
 	Dicc()
 	var tai="<table>"
@@ -98,14 +98,14 @@ function createT(arg) {
 	var conn=-1
     for (var i = 2; i <arg.length; i+=parseInt(arg[1].value)+1) {
     	conn++
-    	console.log(parseInt(arg[0].value),"contenedor")
+    	// console.log(parseInt(arg[0].value),"contenedor")
     	let half=0
 		var h=Array()
 		var col=Array()
 
-    	console.log(i,"i")
+    	// console.log(i,"i")
 		for (var k = i; k < i+parseInt(arg[1].value); k++) {
-			console.log(half,arg[k],"half")
+			// console.log(half,arg[k],"half")
 			half+=parseInt(arg[k].value)
 			col.push(parseInt(arg[k].value))
 		}
@@ -116,11 +116,11 @@ function createT(arg) {
 			h.push(half/2)
 			h.push(half/2)
 		}
-		console.log(h,"h",col)
+		// console.log(h,"h",col)
 		da+="<div class='item'>"
     	da+=tai;
 	    for (var j = 0; j <parseInt(half/2); j++) {
-	    	console.log(j,"j")
+	    	// console.log(j,"j")
 	    	da+=tri;
 	    	for (var z = 0; z <h[j]; z++) {
 	    		let re=Asignar(col)
@@ -133,18 +133,18 @@ function createT(arg) {
 	     da+="</div>"
     }
 
-    console.log(da)
+    // console.log(da)
     $('#juego').html(da)
 
     $("td").on('click',function(){
 		if (onTd) {
 			if (sw.length>0 && $(this).attr("id")!=sw[0].attr("id")) {
-				console.log($(this).html(),$(this).attr("id"))
+				// console.log($(this).html(),$(this).attr("id"))
 				con+=1
 				sw.push($(this))
 				swap()
 			}else if (con<1){
-				console.log($(this).html(),$(this).attr("id"))
+				// console.log($(this).html(),$(this).attr("id"))
 				con+=1
 				sw.push($(this))
 			}
@@ -165,14 +165,14 @@ function Dicc(argument) {
 		}
 		if(ch!="#FFFFFF")
 		color.push(ch)
-		console.log(ch,color)
+		// console.log(ch,color)
 		ch="#"
 	}
 }	
 
 function Asignar(arg) {
 	for (var i = 0; i < arg.length; i++) {
-		console.log(arg,"arg",i)
+		// console.log(arg,"arg",i)
 		if (arg[i]>=1) {
 			arg[i]--
 			return i
@@ -181,7 +181,7 @@ function Asignar(arg) {
 }
 function swap() {
 	if (con===2) {
-		console.log(sw)
+		// console.log(sw)
 		dat={id1:sw[0].attr('id'),v1: sw[0].html(),v2: sw[1].html(),id2:sw[1].attr('id')}
 		let r=""+sw[0].html()
 		sw[0].html(""+sw[1].html())
@@ -190,7 +190,7 @@ function swap() {
 		sw[1].css("background",color[parseInt(sw[1].html())])
 		con=0
 		sw=Array()
-		console.log(JSON.stringify(dat))
+		// console.log(JSON.stringify(dat))
 		$.ajax({
             type: 'put',
             url: 'php/index.php',
@@ -198,8 +198,8 @@ function swap() {
             dataType:'JSON',
             success: function (result) {
               if (result) {
-              	console.log(result)
-              	if (result.Gano==="si") {
+              	// console.log(result)
+              	if (result.Gano==="Si") {
               		$('#cabeza').html("GANO")
               		onTd=false;
               		$('#juego').after("<div class='center' ><p class='boton' id='reload'>EMPEZAR</p></div>")

@@ -82,7 +82,8 @@ CREATE TABLE pelota (
     it integer,
     id_it integer NOT NULL,
     cant integer,
-    id_co integer
+    id_co integer,
+    sum integer
 );
 
 
@@ -135,7 +136,7 @@ COPY componente (id, n) FROM stdin;
 -- Data for Name: pelota; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY pelota (it, id_it, cant, id_co) FROM stdin;
+COPY pelota (it, id_it, cant, id_co, sum) FROM stdin;
 \.
 
 
@@ -143,14 +144,14 @@ COPY pelota (it, id_it, cant, id_co) FROM stdin;
 -- Name: componente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('componente_id_seq', 3, true);
+SELECT pg_catalog.setval('componente_id_seq', 43, true);
 
 
 --
 -- Name: pelota_id_it_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('pelota_id_it_seq', 6, true);
+SELECT pg_catalog.setval('pelota_id_it_seq', 106, true);
 
 
 --

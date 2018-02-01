@@ -42,12 +42,12 @@ class Request
 			}
 		}
 
-		function Gano(){
-			$upd1 = $this->db->Query("SELECT cant FROM pelota WHERE cant=0;");
-			if (isset($upd1) && $upd1[0]["cant"]=="0") {
-				echo json_encode(array("ok"=>true,"Gano"=>"si"));
+		function Gano(string $id,string $t){
+			$upd1 = $this->db->Query("SELECT cant FROM pelota WHERE cant=(SELECT sum FROM pelota WHERE it=$t AND id_co=$id);");
+			if (isset($upd1[0])) {
+				return "Si";
 			}else{
-				echo json_encode(array("ok"=>true,"Gano"=>"no"));
+				return "No";
 			}
 		}
 		function Put(){
@@ -62,7 +62,12 @@ class Request
 			$upd3 = $this->db->Query("UPDATE pelota SET cant=(SELECT cant FROM pelota WHERE it=$ip2 AND id_co=$id2)-1 WHERE it=$ip2 AND id_co=$id2;");
 			$upd4 = $this->db->Query("UPDATE pelota SET cant=(SELECT cant FROM pelota WHERE it=$ip1 AND id_co=$id2)+1 WHERE it=$ip1 AND id_co=$id2;");
 			
-			$this->Gano();
+			$r1=$this->Gano($id1,$ip2);
+			if ($r1=="No") {
+				$r1=$this->Gano($id2,$ip1); 
+			}
+			
+			echo json_encode(array("ok"=>true,"Gano"=>$r1));
 
 		} 
 
@@ -78,17 +83,22 @@ class Request
 		}
 		$i=0;
 		$j=0;
+		$sum=0;
 		while (true) {
 			
 			if($j==(int)$this->form['puntos']){
+			$row = $this->db->Query("UPDATE pelota SET sum=$sum WHERE id_co=$i;");
 			$j=0;
 			$i++;
+			
+			$sum=0;
 			}
 			if ($i==(int)$this->form['contenedor']) {
 				break;
 			}
 			$inex="{$i}/{$j}";
 			$cant=$this->form[$inex];
+			$sum+=(int)$cant;
 			$row = $this->db->Query("INSERT INTO pelota (it,cant,id_co) values ($j,$cant,$i);");
 			$j++;
 		}
