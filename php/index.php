@@ -8,7 +8,7 @@ class DataBase
 	public $db;
 	function __construct()
 	{
-		$conn_string = "host=localhost port=5432 dbname=todo user=postgres password=kara";
+		$conn_string = "host=localhost port=5432 dbname=postgres user=postgres password=kara";
 		$this->db = pg_connect($conn_string);
 	}
 	function Query(string $qr){
