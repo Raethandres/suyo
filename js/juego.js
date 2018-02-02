@@ -35,7 +35,7 @@ $("#enviar").on('click',function(){
 		$("#ins").before("<div class='center'><h2>las filas son los componentes y las columnas los puntos </h2></div>")
 		let r=""
 		for (var i = 0; i < parseInt($('#punto').val()); i++) {
-					r+="<p class='item'>"+i+"</p>"
+					r+="<p class='t'>"+i+"</p>"
 				}
 		$("#ins").before("<div class='center'>"+r+"</div>")
 
@@ -124,8 +124,6 @@ function createT(arg) {
 	     da+="</div>"
     }
 
-	// console.log(da)
-	Verificar(arg)
     $('#juego').html(da)
 
     $("td").on('click',function(){
@@ -149,18 +147,27 @@ function createT(arg) {
 var color=Array()
 function Dicc(argument) {
 	
-	let hexa=Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F")
-	let ch="#"
-	for (var j = 0; j < 100; j++) {
-		for (var i = 0; i < 6; i++) {
-		ran=Math.floor(Math.random()*(6-0))
-		ch+=hexa[ran]
-		}
-		if(ch!="#FFFFFF")
-		color.push(ch)
-		// console.log(ch,color)
-		ch="#"
-	}
+	// let hexa=Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F")
+	// let ch="#"
+	// for (var j = 0; j < 100; j++) {
+	// 	for (var i = 0; i < 6; i++) {
+	// 	ran=Math.floor(Math.random()*(6-0))
+	// 	ch+=hexa[ran]
+	// 	}
+	// 	if(ch!="#FFFFFF")
+	// 	color.push(ch)
+	// 	// console.log(ch,color)
+	// 	ch="#"
+	// }
+	color.push("#849B89")
+	color.push("#F27F62")
+	color.push("#ABBC85")
+	color.push("#FBB36B")
+	color.push("#04838C")
+	color.push("#F07719")
+	color.push("#FFE9B8")
+	color.push("#DAB94A")
+	color.push("#249891")
 }	
 
 function Asignar(arg) {
@@ -173,9 +180,6 @@ function Asignar(arg) {
 	}
 }
 
-function Verificar(params) {
-	
-}
 
 function swap() {
 	if (con===2) {
