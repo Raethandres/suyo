@@ -1,7 +1,7 @@
 # SUYO GAME
 
-este es la prueba fue desarrolado con la herramienta jquery y php de back para manejo del dervidor y base de datos en postgres
-si desea usarlo con la base de datos porfavor modifiques los permisos en /php/index.php linea 11;
+este es la prueba fue desarrolado con la herramienta jquery y php de back para manejo del servidor y base de datos en postgres, sobre sistema operativo linux
+si desea usarlo con la base de datos porfavor modifiques los permisos en /php/index.php linea 11, lo que es el host, y password;
 
 ## Comenzando 🚀
 
