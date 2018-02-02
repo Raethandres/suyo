@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+
 let con=0;
 let sw=Array();
 let mt=false;
@@ -13,7 +14,8 @@ var onTd=true;
               // console.log(result);
               
             }
-          });
+		  });
+
 $("#send").on('click',function(){
 	// console.log("22222ww")
 	$.ajax({
@@ -64,7 +66,11 @@ $("#enviar").on('click',function(){
             }
           });
 			
-			$("#c").html("<div><div class='header center'><h1 id='cabeza'>A jugar</h1></div><div class='center' id='juego'></div>")
+			$("#c").html("<div><div class='header center'><h1 id='cabeza'>a jugar, si te aburres dame click para empezar</h1></div><div class='center' id='juego'></div>")
+			$("#cabeza").on('click',function(){
+				location.reload()
+			
+			})
 			createT(matriz)
 		}
 		
